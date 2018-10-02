@@ -1,5 +1,6 @@
 package base.test;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import base.Board;
@@ -11,6 +12,14 @@ import junit.framework.Assert;
 
 public class ParserTest {
 	
+	private Parser parser;
+	
+	@Before
+	public void setUp()
+	{
+		parser = ParserFactory.getParser(ParserType.TEXT);
+	}
+
 	@Test(expected=Parser.InvalidInput.class)
 	public void validateIncorrectTextInput()
 	{
@@ -20,7 +29,6 @@ public class ParserTest {
 				+ ",3,3,2,,,,,,"
 				+ ",,,,,,,,,";
 		
-		Parser parser = ParserFactory.getParser(ParserType.TEXT);
 		parser.parse(notValidInput);
 	}
 	
@@ -40,56 +48,55 @@ public class ParserTest {
 				+ "1,1,1,1,1,9,1,1,1,"
 				+ "1,1,1,1,1,1,8,1,1,";
 		
-		Parser parser = ParserFactory.getParser(ParserType.TEXT);
-		//parser.parse(notValidInput);
+		parser.parse(notValidInput);
 	}
 	
 	@Test(expected=Parser.IncorrectGridFormat.class)
 	public void validateIncorrectGridInput()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.TEXT);
+		
 	}
 	
 	@Test
 	public void validateCorrectGridInput()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.TEXT);
+		
 	}
 	
 	@Test(expected=Parser.FileNotPresent.class)
 	public void filePresentTest()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.FILE);
+		parser = ParserFactory.getParser(ParserType.FILE);
 	}
 	
 	@Test(expected=Parser.InvalidInput.class)
 	public void validateIncorrectFormatFileTest()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.FILE);
+		parser = ParserFactory.getParser(ParserType.FILE);
 	}
 	
 	@Test
 	public void validateCorrectFormatFileTest()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.FILE);
+		parser = ParserFactory.getParser(ParserType.FILE);
 	}
 	
 	@Test(expected=Parser.IncorrectGridFormat.class)
 	public void validateIncorrectGridFormatFileTest()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.FILE);
+		parser = ParserFactory.getParser(ParserType.FILE);
 	}
 	
 	@Test
 	public void validateCorrectGridFormatFileTest()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.FILE);
+		parser = ParserFactory.getParser(ParserType.FILE);
 	}
 	
 	@Test
 	public void givenNumbersTest()
 	{
-		Parser parser = ParserFactory.getParser(ParserType.FILE);
+		parser = ParserFactory.getParser(ParserType.FILE);
 		Board board = parser.parse("");
 		Assert.assertEquals(0, board.getNumbers());
 	}
