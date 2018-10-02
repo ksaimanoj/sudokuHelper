@@ -7,4 +7,12 @@ public abstract class Parser {
 	public static class InvalidInput extends RuntimeException {
 
 	}
+
+	public static class FileNotPresent extends RuntimeException {
+
+	}
+
+	public static class IncorrectGridFormat extends RuntimeException {
+
+	}
 }

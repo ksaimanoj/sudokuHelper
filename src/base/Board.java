@@ -21,5 +21,10 @@ public class Board {
 			}
 		}
 	}
+	
+	public int getNumbers()
+	{
+		return -1;
+	}
 
 }
