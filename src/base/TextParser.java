@@ -14,11 +14,11 @@ public class TextParser extends Parser {
 	}
 
 	private String[] getCharactersFromInput(String input) {
-		return input.split(",");
+		return input.split(",", -1);
 	}
 
 	private void validateInput() {
-		validateNumberOfCharacters();
+		//validateNumberOfCharacters();
 		validateIfCharactersAreNumbers();
 	}
 
@@ -29,6 +29,11 @@ public class TextParser extends Parser {
 
 	private void validateIfCharactersAreNumbers() {
 
+	}
+	
+	public int getNumberOfCharacters()
+	{
+		return gridCharacters.length;
 	}
 
 }
