@@ -9,8 +9,11 @@ public class TextParser extends Parser {
 	public Board parse(String input) {
 		gridCharacters = getCharactersFromInput(input);
 		validateInput();
+		return createBoard();
+	}
 
-		return null;
+	public int getNumberOfCharacters() {
+		return gridCharacters.length;
 	}
 
 	private String[] getCharactersFromInput(String input) {
@@ -18,7 +21,7 @@ public class TextParser extends Parser {
 	}
 
 	private void validateInput() {
-		//validateNumberOfCharacters();
+		validateNumberOfCharacters();
 		validateIfCharactersAreNumbers();
 	}
 
@@ -27,13 +30,18 @@ public class TextParser extends Parser {
 			throw new InvalidInput();
 	}
 
-	private void validateIfCharactersAreNumbers() {
+	private void validateIfCharactersAreNumbers() throws NumberFormatException {
+		for (int characterNo = 0; characterNo < gridCharacters.length; characterNo++)
+			convertStringToInteger(characterNo);
 
 	}
-	
-	public int getNumberOfCharacters()
-	{
-		return gridCharacters.length;
+
+	private void convertStringToInteger(int characterNo) {
+		gridNumbers[characterNo] = Integer.parseInt(gridCharacters[characterNo]);
+	}
+
+	private Board createBoard() {
+		return new Board(gridNumbers);
 	}
 
 }

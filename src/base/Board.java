@@ -7,7 +7,7 @@ public class Board {
 	
 	GridItem[][] items;
 	
-	public Board() {
+	public Board(int[] gridNumbers) {
 		items = new GridItem[LENGTH][WIDTH];
 		initializeBoard();
 	}
