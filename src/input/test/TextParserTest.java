@@ -1,8 +1,12 @@
-package base.test;
+package input.test;
 
 import org.junit.*;
 
 import base.*;
+import input.Parser;
+import input.ParserFactory;
+import input.ParserType;
+import input.TextParser;
 import junit.framework.Assert;
 
 public class TextParserTest {

@@ -1,4 +1,6 @@
-package base;
+package input;
+
+import base.Board;
 
 public class FileParser extends Parser {
 

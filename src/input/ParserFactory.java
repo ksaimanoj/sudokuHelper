@@ -1,4 +1,4 @@
-package base;
+package input;
 
 public class ParserFactory {
 	
