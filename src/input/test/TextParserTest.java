@@ -1,131 +1,80 @@
 package input.test;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.*;
 
-import base.*;
-import input.Parser;
-import input.ParserFactory;
-import input.ParserType;
-import input.TextParser;
-import junit.framework.Assert;
+import base.Board;
+import input.*;
 
 public class TextParserTest {
 	
-	private Parser parser;
+	Parser parser;
+	String sudokuInputText;
 	
 	@Before
 	public void setUp()
 	{
 		parser = ParserFactory.getParser(ParserType.TEXT);
+		sudokuInputText = "";
 	}
-
+	
+	@Test(expected=Parser.NullInput.class)
+	public void nullInputTest()
+	{
+		sudokuInputText = null;
+		parser.parse(sudokuInputText);
+	}
+	
+	@Test(expected=Parser.EmptyInput.class)
+	public void emptyInputTest()
+	{
+		parser.parse(sudokuInputText);
+	}
+	
 	@Test(expected=Parser.InvalidInput.class)
-	public void validateIncorrectTextInput()
+	public void invalidInputTest()
 	{
-		String notValidInput = "" 
-				+ "9,9,9,2,3,4,1,2,"
-				+ ",,,2,4,2,3,,,"
-				+ ",3,3,2,,,,,,"
-				+ ",,,,,,,,,";
-		
-		parser.parse(notValidInput);
+		sudokuInputText = "2,1,4,2,1,4,2";
+		parser.parse(sudokuInputText);
 	}
 	
-	@Test
-	public void validateCorrectTextInput()
+	@Test(expected=NumberFormatException.class)
+	public void numbersTest()
 	{
-		String notValidInput = "" 
-				+ "9,9,9,2,3,4,1,2,3,"
-				+ "1,1,1,2,4,2,3,1,1,"
-				+ "1,3,3,2,1,1,1,1,1,"
-				
-				+ "1,2,3,1,1,1,1,1,1,"
-				+ "1,1,1,4,1,1,1,1,1,"
-				+ "1,1,1,1,2,1,1,1,1,"
-				
-				+ "1,1,1,1,2,1,1,1,1,"
-				+ "1,1,1,1,1,9,1,1,1,"
-				+ "1,1,1,1,1,1,8,1,1,";
-		
-		parser.parse(notValidInput);
+		sudokuInputText = numbersTestInput();
+		parser.parse(sudokuInputText);
 	}
 	
-	@Test(expected=Parser.IncorrectGridFormat.class)
-	public void validateIncorrectGridInput()
+	@Test 
+	public void validInputTest()
 	{
-		String notValidInput = "" 
-				+ "9,9,9,2,3,4,1,2,3,"
-				+ "1,1,1,2,4,2,3,1,1,"
-				+ "1,3,3,2,1,1,1,1,1,"
-				
-				+ "1,2,3,1,1,1,1,1,1,"
-				+ "1,1,1,4,1,1,1,1,1,"
-				+ "1,1,1,1,2,1,1,1,1,"
-				
-				+ "1,1,1,1,2,1,1,1,1,"
-				+ "1,1,1,1,1,9,1,1,1,"
-				+ "1,1,1,1,1,1,8,1,1,";
-		
-		parser.parse(notValidInput);
-	}
-	
-	@Test
-	public void validateCorrectGridInput()
-	{
-		
-	}
-		
-	@Test
-	public void givenNumbersTest()
-	{
-		parser = ParserFactory.getParser(ParserType.FILE);
-		Board board = parser.parse("");
-		Assert.assertEquals(0, board.getNumbers());
-	}
-	
-	@Test
-	public void gridCharactersSizeTest() {
-		Parser parser = ParserFactory.getParser(ParserType.TEXT);
-		String incompleteInput = "" 
-				+ "9,9,9,2,3,4,1,2,"
-				+ ",,,2,4,2,3,,,"
-				+ ",3,3,2,,,,,,"
-				+ ",,,,,,,,,";
-		
-		parser.parse(incompleteInput);
-		TextParser textParser = (TextParser) parser;
-		Assert.assertEquals(36, textParser.getNumberOfCharacters());
-		
-		incompleteInput = "" 
-				+ "9,9,9,2,3,4,1,2,"
-				+ ",,,2,4,2,3,,,"
-				+ ",3,3,2,,,,,,"
-				+ ",,,,,,,,,"
-				+ ",,,,,,,,,"
-				+ ",,,,,,,,,"
-				+ ",,,,,,,,,"
-				+ ",,,,,,,,,"
-				+ ",,,,,,,,,";
-		parser.parse(incompleteInput);
-		textParser = (TextParser) parser;
-		Assert.assertEquals(81, textParser.getNumberOfCharacters());
-		
-		incompleteInput = "" 
-				+ "9,9,9,2,3,4,1,2,3,"
-				+ "1,1,1,2,4,2,3,1,1,"
-				+ "1,3,3,2,1,1,1,1,1,"
-				
-				+ "1,2,3,1,1,1,1,1,1,"
-				+ "1,1,1,4,1,1,1,1,1,"
-				+ "1,1,1,1,2,1,1,1,1,"
-				
-				+ "1,1,1,1,2,1,1,1,1,"
-				+ "1,1,1,1,1,9,1,1,1,"
-				+ "1,1,1,1,1,1,8,1,1";
-		parser.parse(incompleteInput);
-		textParser = (TextParser) parser;
-		Assert.assertEquals(81, textParser.getNumberOfCharacters());
-		
+		sudokuInputText = validInput();
+		Board board = parser.parse(sudokuInputText);
+		assertNotNull(board);
 	}
 
+	private String numbersTestInput() {
+		return "0,0,0,0,1,9,0,8,0," + 
+				"3,7,0,0,0,0,5,0,0," + 
+				"0,2,0,6,0,0,4,0,0," + 
+				"0,3,7,0,a,0,0,0,0," + 
+				"4,0,0,0,0,0,0,0,2," + 
+				"0,0,0,0,0,0,8,1,0," + 
+				"0,0,3,0,0,6,0,7,0," + 
+				"0,0,1,0,0,0,0,5,6," + 
+				"0,8,0,3,5,0,0,0,0";
+	}
+
+	private String validInput() {
+		return "0,0,0,0,1,9,0,8,0," + 
+				"3,7,0,0,0,0,5,0,0," + 
+				"0,2,0,6,0,0,4,0,0," + 
+				"0,3,7,0,0,0,0,0,0," + 
+				"4,0,0,0,0,0,0,0,2," + 
+				"0,0,0,0,0,0,8,1,0," + 
+				"0,0,3,0,0,6,0,7,0," + 
+				"0,0,1,0,0,0,0,5,6," + 
+				"0,8,0,3,5,0,0,0,0";
+	}
 }

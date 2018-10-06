@@ -4,47 +4,48 @@ import base.Board;
 
 public class TextParser extends Parser {
 
-	private String[] gridCharacters;
+	private String[] gridInput;
 	private int[] gridNumbers;
 
 	@Override
 	public Board parse(String input) {
-		gridCharacters = getCharactersFromInput(input);
-		gridNumbers = new int[gridCharacters.length];
-		validateInput();
-		return createBoard();
+		validateInitialInput(input);
+		gridInput = splitInputByDelimiter(input);
+		gridNumbers = new int[gridInput.length];
+		validateInputCharacters();
+		return new Board(gridNumbers);
 	}
 
-	public int getNumberOfCharacters() {
-		return gridCharacters.length;
+	private void validateInitialInput(String input) {
+		if (input == null)
+			throw new NullInput();
+		if (input.equals(""))
+			throw new EmptyInput();
 	}
 
-	private String[] getCharactersFromInput(String input) {
+	private String[] splitInputByDelimiter(String input) {
 		return input.split(",", -1);
 	}
 
-	private void validateInput() {
+	private void validateInputCharacters() {
 		validateNumberOfCharacters();
 		validateIfCharactersAreNumbers();
 	}
 
 	private void validateNumberOfCharacters() {
-		if (gridCharacters.length != 81)
-			throw new InvalidInput();
+		if (gridInput.length != 81)
+			throw new InvalidInput("Expected 81 numbers. Obtained "
+					+ gridInput.length + "characters");
 	}
 
 	private void validateIfCharactersAreNumbers() throws NumberFormatException {
-		for (int characterNo = 0; characterNo < gridCharacters.length; characterNo++)
+		for (int characterNo = 0; characterNo < gridInput.length; characterNo++)
 			convertStringToInteger(characterNo);
 
 	}
 
-	private void convertStringToInteger(int characterNo) {
-		gridNumbers[characterNo] = Integer.parseInt(gridCharacters[characterNo]);
+	private void convertStringToInteger(int characterNo)
+			throws NumberFormatException {
+		gridNumbers[characterNo] = Integer.parseInt(gridInput[characterNo]);
 	}
-
-	private Board createBoard() {
-		return new Board(gridNumbers);
-	}
-
 }

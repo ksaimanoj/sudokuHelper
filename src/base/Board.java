@@ -19,7 +19,7 @@ public class Board {
 		{
 			for(int col = 0; col < WIDTH; col++)
 			{
-				if(items[row][col].isValueFixed())
+				if(items[row][col].isValueKnown())
 					solveIndividualItem(row, col);
 			}
 		}
@@ -33,14 +33,14 @@ public class Board {
 	private void handleAllRowItems(int row, int col) {
 		for(int colNo = 0; colNo < GridItem.MAXIMUM_POSSIBLE_VALUE; colNo++)
 		{
-			items[row][colNo].setPossibleValueFalse(items[row][col].getValue());
+			items[row][colNo].changePossibleValue(items[row][col].value(), false);
 		}
 	}
 
 	private void handleAllColumnItems(int row, int col) {
 		for(int rowNo = 0; rowNo < GridItem.MAXIMUM_POSSIBLE_VALUE; rowNo++)
 		{
-			items[rowNo][col].setPossibleValueFalse(items[row][col].getValue());
+			items[rowNo][col].changePossibleValue(items[row][col].value(), false);
 		}
 	}
 

@@ -9,34 +9,34 @@ public class GridItem {
 	
 	public GridItem() {
 		super();
-		initializePossibleValues();
+		initializeAllPossibleValuesAsTrue();
 	}
 
-	private void initializePossibleValues() {
+	private void initializeAllPossibleValuesAsTrue() {
 		possibleValues = new boolean[MAXIMUM_POSSIBLE_VALUE];
-		
-		for(int i = 0; i < MAXIMUM_POSSIBLE_VALUE; i++)
-			possibleValues[i] = true;
+		setAllPossibleValues(true);
 	}
 
 	public void setValue(int value) {
 		this.value = value;
-		initializePossibleValues();
-		if(value != 0)
-		{
-			for(int i = 0; i < MAXIMUM_POSSIBLE_VALUE; i++)
-				possibleValues[i] = false;
-		}
+		initializeAllPossibleValuesAsTrue();
+		if(isValueKnown())
+			setAllPossibleValues(false);
+	}
+
+	private void setAllPossibleValues(boolean state) {
+		for(int i = 0; i < MAXIMUM_POSSIBLE_VALUE; i++)
+			possibleValues[i] = state;
 	}
 	
-	public int getValue()
+	public int value()
 	{
 		return this.value;
 	}
 	
-	public void setPossibleValueFalse(int value)
+	public void changePossibleValue(int index, boolean state)
 	{
-		possibleValues[value] = false;
+		possibleValues[index] = state;
 	}
 	
 	public boolean isPossible(int index)
@@ -44,7 +44,7 @@ public class GridItem {
 		return possibleValues[index];
 	}
 	
-	public boolean isValueFixed()
+	public boolean isValueKnown()
 	{
 		return this.value != 0;
 	}

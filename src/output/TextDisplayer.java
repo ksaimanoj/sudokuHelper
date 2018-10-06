@@ -36,7 +36,7 @@ public class TextDisplayer implements Displayer {
 		for(int col = 0; col < Board.WIDTH; col++)
 		{
 			sudokuString += formColGridSeperator(col);
-			sudokuString += gridItems[row][col].getValue();
+			sudokuString += gridItems[row][col].value();
 		}
 		sudokuString += formRowEnding();
 		return sudokuString;

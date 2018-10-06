@@ -49,7 +49,7 @@ public class GridItemTest {
 	@Test
 	public void setPossibleValueFalseTest()
 	{
-		gridItem.setPossibleValueFalse(4);
+		gridItem.changePossibleValue(4, false);
 		
 		for(int index = 0; index < 4; index++)
 		{
@@ -68,10 +68,10 @@ public class GridItemTest {
 	public void isValueFixedTest()
 	{
 		gridItem.setValue(3);
-		assertTrue(gridItem.isValueFixed());
+		assertTrue(gridItem.isValueKnown());
 		
 		gridItem.setValue(0);
-		assertFalse(gridItem.isValueFixed());
+		assertFalse(gridItem.isValueKnown());
 	}
 
 }
