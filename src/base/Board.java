@@ -72,5 +72,10 @@ public class Board {
 	{
 		return -1;
 	}
+	
+	public GridItem[][] getState()
+	{
+		return items;
+	}
 
 }
