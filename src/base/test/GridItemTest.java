@@ -20,7 +20,7 @@ public class GridItemTest {
 	@Test
 	public void initializePossibleValuesTest()
 	{
-		for(int index = 0; index < GridItem.MAXIMUM_POSSIBLE_VALUES; index++)
+		for(int index = 0; index < GridItem.MAXIMUM_POSSIBLE_VALUE; index++)
 			assertTrue(gridItem.isPossible(index));
 	}
 	
@@ -29,7 +29,7 @@ public class GridItemTest {
 	{
 		gridItem.setValue(3);
 		
-		for(int index = 0; index < GridItem.MAXIMUM_POSSIBLE_VALUES; index++)
+		for(int index = 0; index < GridItem.MAXIMUM_POSSIBLE_VALUE; index++)
 		{
 			assertFalse(gridItem.isPossible(index));
 		}
@@ -40,7 +40,7 @@ public class GridItemTest {
 	{
 		gridItem.setValue(0);
 		
-		for(int index = 0; index < GridItem.MAXIMUM_POSSIBLE_VALUES; index++)
+		for(int index = 0; index < GridItem.MAXIMUM_POSSIBLE_VALUE; index++)
 		{
 			assertTrue(gridItem.isPossible(index));
 		}
@@ -58,7 +58,7 @@ public class GridItemTest {
 		
 		assertFalse(gridItem.isPossible(4));
 		
-		for(int index = 4 + 1; index < GridItem.MAXIMUM_POSSIBLE_VALUES; index++)
+		for(int index = 4 + 1; index < GridItem.MAXIMUM_POSSIBLE_VALUE; index++)
 		{
 			assertTrue(gridItem.isPossible(index));
 		}

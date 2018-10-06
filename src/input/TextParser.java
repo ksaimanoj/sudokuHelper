@@ -10,6 +10,7 @@ public class TextParser extends Parser {
 	@Override
 	public Board parse(String input) {
 		gridCharacters = getCharactersFromInput(input);
+		gridNumbers = new int[gridCharacters.length];
 		validateInput();
 		return createBoard();
 	}

@@ -18,10 +18,39 @@ public class TextDisplayer implements Displayer {
 	
 	@Override
 	public void display() {
-		String sudokuString = "";
 		GridItem[][] gridItems = board.getState();
-		
+		System.out.println(formSudokuString(gridItems));
 	}
 
+	private String formSudokuString(GridItem[][] gridItems) {
+		String sudokuString = "";
+		for(int row = 0; row < Board.LENGTH; row++)
+		{
+			sudokuString += formEntrireRow(gridItems,row);
+		}
+		return sudokuString;
+	}
 
+	private String formEntrireRow(GridItem[][] gridItems, int row) {
+		String sudokuString = formRowGridSeperator(row);
+		for(int col = 0; col < Board.WIDTH; col++)
+		{
+			sudokuString += formColGridSeperator(col);
+			sudokuString += gridItems[row][col].getValue();
+		}
+		sudokuString += formRowEnding();
+		return sudokuString;
+	}
+
+	private String formRowEnding() {
+		return "|\n";
+	}
+
+	private String formRowGridSeperator(int row) {
+		return (row % 3 == 0) ? "------------\n" : "";
+	}
+
+	private String formColGridSeperator(int col) {
+		return col % 3 == 0 ? "|" : "";
+	}
 }

@@ -31,14 +31,14 @@ public class Board {
 	}
 
 	private void handleAllRowItems(int row, int col) {
-		for(int colNo = 0; colNo < GridItem.MAXIMUM_POSSIBLE_VALUES; colNo++)
+		for(int colNo = 0; colNo < GridItem.MAXIMUM_POSSIBLE_VALUE; colNo++)
 		{
 			items[row][colNo].setPossibleValueFalse(items[row][col].getValue());
 		}
 	}
 
 	private void handleAllColumnItems(int row, int col) {
-		for(int rowNo = 0; rowNo < GridItem.MAXIMUM_POSSIBLE_VALUES; rowNo++)
+		for(int rowNo = 0; rowNo < GridItem.MAXIMUM_POSSIBLE_VALUE; rowNo++)
 		{
 			items[rowNo][col].setPossibleValueFalse(items[row][col].getValue());
 		}
@@ -49,7 +49,7 @@ public class Board {
 		{
 			for(int col = 0; col < WIDTH; col++)
 			{
-				solveIndividualItem(row, col);
+				items[row][col] = new GridItem();
 			}
 		}
 	}
@@ -65,7 +65,7 @@ public class Board {
 	}
 
 	private int obtainSequenceNumber(int row, int col) {
-		return row * GridItem.MAXIMUM_POSSIBLE_VALUES + col;
+		return row * GridItem.MAXIMUM_POSSIBLE_VALUE + col;
 	}
 	
 	public int getNumbers()

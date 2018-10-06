@@ -2,7 +2,7 @@ package base;
 
 public class GridItem {
 	
-	public static final int MAXIMUM_POSSIBLE_VALUES = 9;
+	public static final int MAXIMUM_POSSIBLE_VALUE = 9;
 	
 	private int value;
 	private boolean[] possibleValues;
@@ -13,9 +13,9 @@ public class GridItem {
 	}
 
 	private void initializePossibleValues() {
-		possibleValues = new boolean[MAXIMUM_POSSIBLE_VALUES];
+		possibleValues = new boolean[MAXIMUM_POSSIBLE_VALUE];
 		
-		for(int i = 0; i < MAXIMUM_POSSIBLE_VALUES; i++)
+		for(int i = 0; i < MAXIMUM_POSSIBLE_VALUE; i++)
 			possibleValues[i] = true;
 	}
 
@@ -24,7 +24,7 @@ public class GridItem {
 		initializePossibleValues();
 		if(value != 0)
 		{
-			for(int i = 0; i < MAXIMUM_POSSIBLE_VALUES; i++)
+			for(int i = 0; i < MAXIMUM_POSSIBLE_VALUE; i++)
 				possibleValues[i] = false;
 		}
 	}
