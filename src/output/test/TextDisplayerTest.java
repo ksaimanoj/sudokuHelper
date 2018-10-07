@@ -20,7 +20,14 @@ public class TextDisplayerTest {
 	@Test
 	public void displayTest()
 	{
-		String inputString = "0,0,0,0,1,9,0,8,0," + 
+		String inputString = sudokuInput();
+		Board board = parser.parse(inputString);
+		displayer.setBoard(board);
+		displayer.display();
+	}
+
+	private String sudokuInput() {
+		return "0,0,0,0,1,9,0,8,0," + 
 				"3,7,0,0,0,0,5,0,0," + 
 				"0,2,0,6,0,0,4,0,0," + 
 				"0,3,7,0,0,0,0,0,0," + 
@@ -29,9 +36,6 @@ public class TextDisplayerTest {
 				"0,0,3,0,0,6,0,7,0," + 
 				"0,0,1,0,0,0,0,5,6," + 
 				"0,8,0,3,5,0,0,0,0";
-		Board board = parser.parse(inputString);
-		displayer.setBoard(board);
-		displayer.display();
 	}
 
 }
