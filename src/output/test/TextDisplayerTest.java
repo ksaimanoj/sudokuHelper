@@ -21,7 +21,8 @@ public class TextDisplayerTest {
 	public void displayTest()
 	{
 		String inputString = sudokuInput();
-		Board board = parser.parse(inputString);
+		Board board = new Board();
+		board.setState(parser.parse(inputString));
 		displayer.setBoard(board);
 		displayer.display();
 	}

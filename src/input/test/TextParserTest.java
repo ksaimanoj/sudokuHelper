@@ -44,8 +44,8 @@ public class TextParserTest {
 	@Test
 	public void validInputTest() {
 		sudokuInputText = validInput();
-		Board board = parser.parse(sudokuInputText);
-		assertNotNull(board);
+		int[] gridNumbers = parser.parse(sudokuInputText);
+		assertNotNull(gridNumbers);
 	}
 
 	private String numbersTestInput() {

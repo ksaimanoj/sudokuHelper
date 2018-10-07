@@ -4,20 +4,20 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import base.Board2;
+import base.Board;
 import input.Parser;
 import input.ParserFactory;
 import input.ParserType;
 
 public class BoardTest {
 
-	Board2 board;
+	Board board;
 	Parser parser;
 	int[] gridNumbers;
 
 	@Before
 	public void setUp() {
-		board = new Board2();
+		board = new Board();
 		parser = ParserFactory.getParser(ParserType.TEXT);
 		gridNumbers = parser.parse(formSudokuInput());
 	}
@@ -31,11 +31,20 @@ public class BoardTest {
 	public void setBoardTest() {
 		board.setState(gridNumbers);
 
-		Assert.assertEquals(Board2.LENGTH, board.getState().length);
-		Assert.assertEquals(Board2.WIDTH, board.getState()[0].length);
+		Assert.assertEquals(Board.LENGTH, board.getState().length);
+		Assert.assertEquals(Board.WIDTH, board.getState()[0].length);
 
 		Assert.assertNotNull(board.getState()[0][0]);
 		Assert.assertEquals(9, board.getState()[0][0].value());
+	}
+	
+	@Test
+	public void convertTo2DTest()
+	{
+		Assert.assertEquals(0, board.convertTo2D(0, 0));
+		Assert.assertEquals(80, board.convertTo2D(8, 8));
+		Assert.assertEquals(22, board.convertTo2D(2, 4));
+		Assert.assertEquals(71, board.convertTo2D(7, 8));
 	}
 
 	private String formSudokuInput() {
