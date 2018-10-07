@@ -8,12 +8,12 @@ public class TextParser extends Parser {
 	private int[] gridNumbers;
 
 	@Override
-	public Board parse(String input) {
+	public int[] parse(String input) {
 		validateInitialInput(input);
 		gridInput = splitInputByDelimiter(input);
 		gridNumbers = new int[gridInput.length];
 		validateInputCharacters();
-		return new Board(gridNumbers);
+		return gridNumbers;
 	}
 
 	private void validateInitialInput(String input) {

@@ -4,8 +4,8 @@ import base.Board;
 
 public abstract class Parser {
 
-	public abstract Board parse(String input);
-	
+	public abstract int[] parse(String input);
+
 	public static class FileNotPresent extends RuntimeException {
 
 	}
@@ -23,9 +23,9 @@ public abstract class Parser {
 	}
 
 	public static class InvalidInput extends RuntimeException {
-		
+
 		String message;
-		
+
 		public InvalidInput(String message) {
 			this.message = message;
 		}
