@@ -28,4 +28,8 @@ public class Board {
 		return row * Board.LENGTH + col;
 	}
 
+	public void setState(GridItem[][] items) {
+		this.items = items;
+	}
+
 }
