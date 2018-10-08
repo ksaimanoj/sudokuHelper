@@ -32,4 +32,14 @@ public class Board {
 		this.items = items;
 	}
 
+	public void removeValueFromRow(int row, int value) {
+		for(int col = 0; col < WIDTH; col++)
+			items[row][col].changePossibleValue(value-1, false);
+	}
+
+	public void removeValueFromColumn(int column, int value) {
+		for(int row = 0; row < LENGTH; row++)
+			items[row][column].changePossibleValue(value-1, false);
+	}
+
 }
