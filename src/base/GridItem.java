@@ -48,5 +48,15 @@ public class GridItem {
 	{
 		return this.value != 0;
 	}
+
+	public int[] getPossibleValues() {
+		int[] possibleInts = new int[MAXIMUM_POSSIBLE_VALUE];
+		for(int i = 0; i < MAXIMUM_POSSIBLE_VALUE; i++)
+			if(possibleValues[i])
+				possibleInts[i] = i + 1;
+		return possibleInts;
+	}
+	
+	
 	
 }

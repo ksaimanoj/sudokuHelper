@@ -1,11 +1,9 @@
-package base.test;
+package base;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import base.Board;
-import base.GridItem;
 import input.Parser;
 import input.ParserFactory;
 import input.ParserType;
