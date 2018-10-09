@@ -42,4 +42,17 @@ public class Board {
 			items[row][column].changePossibleValue(value-1, false);
 	}
 
+	public void removeValueFromBoard(int gridNo, int value) {
+		gridNo--;
+		int rowStart = (gridNo/3) * 3;
+		int colStart = (gridNo % 3) * 3;
+		for(int row = rowStart; row < rowStart + 3; row++)
+		{
+			for(int col = colStart; col < colStart + 3; col++)
+			{
+				items[row][col].changePossibleValue(value - 1, false);
+			}
+		}
+	}
+
 }

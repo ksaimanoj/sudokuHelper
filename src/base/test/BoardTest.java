@@ -76,6 +76,30 @@ public class BoardTest {
 
 	}
 
+	@Test
+	public void removeValueFromBoardTest() {
+		board.setState(gridNumbers);
+		board.removeValueFromBoard(1, 9);
+		GridItem[][] items = board.getState();
+		for(int row = 0; row < 3; row++)
+		{
+			for(int col = 0; col < 3; col++)
+			{
+				Assert.assertFalse(items[row][col].isPossible(9 - 1));
+			}
+		}
+		
+		board.removeValueFromBoard(8, 2);
+		items = board.getState();
+		for(int row = 6; row < 9; row++)
+		{
+			for(int col = 3; col < 6; col++)
+			{
+				Assert.assertFalse(items[row][col].isPossible(2 - 1));
+			}
+		}
+	}
+
 	private String formSudokuInput() {
 		return "9,0,0,0,0,2,0,0,4," + "0,0,6,0,0,0,0,0,1,"
 				+ "0,0,2,6,5,0,0,0,0," + "0,0,0,0,0,5,2,8,0,"
