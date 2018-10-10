@@ -1,5 +1,8 @@
 package base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GridItem {
 	
 	public static final int MAXIMUM_POSSIBLE_VALUE = 9;
@@ -36,7 +39,7 @@ public class GridItem {
 	
 	public void changePossibleValue(int index, boolean state)
 	{
-		possibleValues[index] = state;
+		possibleValues[index - 1] = state;
 	}
 	
 	public boolean isPossible(int index)
@@ -49,12 +52,14 @@ public class GridItem {
 		return this.value != 0;
 	}
 
-	public int[] getPossibleValues() {
-		int[] possibleInts = new int[MAXIMUM_POSSIBLE_VALUE];
-		for(int i = 0; i < MAXIMUM_POSSIBLE_VALUE; i++)
+	public List<Integer> getPossibleValues() {
+		List<Integer> possibleIntegerList = new ArrayList<>();
+		for(int i = 0; i < GridItem.MAXIMUM_POSSIBLE_VALUE; i++)
+		{
 			if(possibleValues[i])
-				possibleInts[i] = i + 1;
-		return possibleInts;
+				possibleIntegerList.add(i + 1);
+		}
+		return possibleIntegerList;
 	}
 	
 	

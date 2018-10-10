@@ -3,6 +3,9 @@ package base;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.*;
 
 public class GridItemTest {
@@ -29,15 +32,22 @@ public class GridItemTest {
 		}
 	}
 	
-	private boolean compareArrays(int[] array1, int[] array2) {
-		if(array1.length != array2.length)
+	private boolean compareLists(List<Integer> list1, List<Integer> list2) {
+		if(list1.size() != list2.size())
 			return false;
-		for(int i = 0; i < array1.length; i++)
+		for(int i = 0; i < list1.size(); i++)
 		{
-			if(array1[i] != array2[i])
+			if(list1.get(i) != list2.get(i))
 				return false;
 		}
 		return true;
+	}
+	
+	private List<Integer> getFullList(int startIndex) {
+		List<Integer> fullList = new ArrayList<>();
+		for(int i = 0; i < GridItem.MAXIMUM_POSSIBLE_VALUE; i++)
+			fullList.add(i + startIndex);
+		return fullList;
 	}
 	
 	@Test
@@ -66,14 +76,14 @@ public class GridItemTest {
 	{
 		gridItem.changePossibleValue(4, false);
 		
-		for(int index = 0; index < 4; index++)
+		for(int index = 0; index < 4 - 1; index++)
 		{
 			assertTrue(gridItem.isPossible(index));
 		}
 		
-		assertFalse(gridItem.isPossible(4));
+		assertFalse(gridItem.isPossible(4 - 1));
 		
-		for(int index = 4 + 1; index < GridItem.MAXIMUM_POSSIBLE_VALUE; index++)
+		for(int index = 4; index < GridItem.MAXIMUM_POSSIBLE_VALUE; index++)
 		{
 			assertTrue(gridItem.isPossible(index));
 		}
@@ -92,34 +102,60 @@ public class GridItemTest {
 	@Test
 	public void compareTwoArraysTest()
 	{
-		int[] a = new int[9];
-		int[] b = new int[9];
-		Assert.assertTrue(compareArrays(a,b));
+		List<Integer> emptyList1 = new ArrayList<>();
+		List<Integer> emptyList2 = new ArrayList<>();
+		Assert.assertTrue(compareLists(emptyList1, emptyList2));
 		
-		int[] c = new int[3];
-		Assert.assertFalse(compareArrays(a, c));
+		List<Integer> nonEmptyList1 = new ArrayList<>();
+		nonEmptyList1.add(1);
+		Assert.assertFalse(compareLists(emptyList1, nonEmptyList1));
 		
-		a[0] = 1;
-		Assert.assertFalse(compareArrays(a, b));
+		List<Integer> nonEmptyList2 = new ArrayList<>();
+		nonEmptyList2.add(1);
+		Assert.assertTrue(compareLists(nonEmptyList1, nonEmptyList2));
 		
-		b[0] = 1;
-		Assert.assertTrue(compareArrays(a, b));
+		List<Integer> nonEmptyList3 = new ArrayList<>();
+		nonEmptyList3.add(2);
+		Assert.assertFalse(compareLists(nonEmptyList1, nonEmptyList3));
 		
-		int[] d = {1,2,3,7,8};
-		int[] e = {1,2,4,9,7};
-		Assert.assertFalse(compareArrays(d, e));
+		List<Integer> nonEmptyList4 = new ArrayList<>();
+		nonEmptyList4.add(1);
+		nonEmptyList4.add(2);
+		nonEmptyList4.add(3);
+		nonEmptyList4.add(4);
+		nonEmptyList4.add(7);
+		nonEmptyList4.add(8);
+		List<Integer> nonEmptyList5 = new ArrayList<>();
+		nonEmptyList5.add(1);
+		nonEmptyList5.add(2);
+		nonEmptyList5.add(3);
+		nonEmptyList5.add(4);
+		nonEmptyList5.add(7);
+		nonEmptyList5.add(9);
+		Assert.assertFalse(compareLists(nonEmptyList4, nonEmptyList5));
 		
-		int[] f = {1,2,3,4,5,6,7,8,9};
-		int[] g = {1,2,3,4,5,6,7,8,9};
-		Assert.assertTrue(compareArrays(f, g));
+		List<Integer> fullList1 = getFullList(0);
+		List<Integer> fullList2 = getFullList(0);
+		Assert.assertEquals(fullList1, fullList2);
 	}
 
 	@Test
 	public void getPossibleValuesTest()
 	{
-		// TODO: Replace the array of int(s) with ArrayList.
-		int[] allValues = {1,2,3,4,5,6,7,8,9};
-		Assert.assertTrue(compareArrays(allValues, gridItem.getPossibleValues()));
+		List<Integer> fullList1 = getFullList(1);
+		Assert.assertTrue(compareLists(fullList1, gridItem.getPossibleValues()));
+		
+		fullList1 = new ArrayList<>();
+		fullList1.add(1);
+		fullList1.add(2);
+		fullList1.add(3);
+		fullList1.add(4);
+		fullList1.add(7);
+		fullList1.add(8);
+		fullList1.add(9);
+		gridItem.changePossibleValue(5, false);
+		gridItem.changePossibleValue(6, false);
+		Assert.assertTrue(compareLists(fullList1, gridItem.getPossibleValues()));
 	}
 
 }
