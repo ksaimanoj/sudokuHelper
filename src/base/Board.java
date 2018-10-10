@@ -33,24 +33,22 @@ public class Board {
 	}
 
 	public void removeValueFromRow(int row, int value) {
-		for(int col = 0; col < WIDTH; col++)
-			items[row][col].changePossibleValue(value-1, false);
+		for (int col = 0; col < WIDTH; col++)
+			items[row][col].changePossibleValue(value, false);
 	}
 
 	public void removeValueFromColumn(int column, int value) {
-		for(int row = 0; row < LENGTH; row++)
-			items[row][column].changePossibleValue(value-1, false);
+		for (int row = 0; row < LENGTH; row++)
+			items[row][column].changePossibleValue(value, false);
 	}
 
 	public void removeValueFromBoard(int gridNo, int value) {
 		gridNo--;
-		int rowStart = (gridNo/3) * 3;
+		int rowStart = (gridNo / 3) * 3;
 		int colStart = (gridNo % 3) * 3;
-		for(int row = rowStart; row < rowStart + 3; row++)
-		{
-			for(int col = colStart; col < colStart + 3; col++)
-			{
-				items[row][col].changePossibleValue(value - 1, false);
+		for (int row = rowStart; row < rowStart + 3; row++) {
+			for (int col = colStart; col < colStart + 3; col++) {
+				items[row][col].changePossibleValue(value, false);
 			}
 		}
 	}

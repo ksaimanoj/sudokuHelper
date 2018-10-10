@@ -31,12 +31,28 @@ public class SimpleSolverTest {
 		Assert.assertNotNull(solver.solve(board));
 	}
 
+	@Test
+	public void getGridNumberTest() {
+		Assert.assertEquals(1, getGridNumber(0, 0));
+		Assert.assertEquals(9, getGridNumber(8, 8));
+		Assert.assertEquals(4, getGridNumber(4, 2));
+		Assert.assertEquals(8, getGridNumber(7, 4));
+	}
+
 	private String formSudokuInput() {
-		return "9,0,0,0,0,2,0,0,4," + "0,0,6,0,0,0,0,0,1,"
-				+ "0,0,2,6,5,0,0,0,0," + "0,0,0,0,0,5,2,8,0,"
-				+ "0,0,7,0,0,0,1,0,0," + "0,5,3,8,0,0,0,0,0,"
-				+ "0,0,0,0,4,1,8,0,0," + "8,0,0,0,0,0,6,0,0,"
-				+ "1,0,0,9,0,0,0,0,7";
+		return "6,0,0,0,0,2,9,0,8," + 
+				"0,4,0,0,0,0,5,1,0," + 
+				"0,0,0,1,0,6,7,0,3," + 
+				"0,3,0,8,7,0,0,0,0," + 
+				"0,0,6,0,0,0,1,0,0," + 
+				"0,0,0,0,6,4,0,9,0," + 
+				"4,0,8,9,0,7,0,0,0," + 
+				"0,6,7,0,0,0,0,8,0," + 
+				"5,0,9,6,0,0,0,0,1";
+	}
+
+	private int getGridNumber(int row, int col) {
+		return row / 3 * 3 + col / 3 + 1;
 	}
 
 }
