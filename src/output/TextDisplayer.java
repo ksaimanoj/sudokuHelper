@@ -1,6 +1,7 @@
 package output;
 
 import base.Board;
+import base.Displayer;
 import base.GridItem;
 
 public class TextDisplayer implements Displayer {

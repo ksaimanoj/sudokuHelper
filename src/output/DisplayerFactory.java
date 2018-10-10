@@ -1,5 +1,7 @@
 package output;
 
+import base.Displayer;
+
 public class DisplayerFactory {
 	
 	public static Displayer getDisplayer(DisplayerType displayerType)

@@ -1,6 +1,7 @@
 package input;
 
 import base.Board;
+import base.Parser;
 
 public class FileParser extends Parser {
 

@@ -1,4 +1,4 @@
-package output.test;
+package output;
 
 import org.junit.*;
 

@@ -1,6 +1,4 @@
-package input;
-
-import base.Board;
+package base;
 
 public abstract class Parser {
 

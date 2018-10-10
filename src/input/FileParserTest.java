@@ -1,11 +1,9 @@
-package input.test;
+package input;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import input.Parser;
-import input.ParserFactory;
-import input.ParserType;
+import base.Parser;
 
 public class FileParserTest {
 	

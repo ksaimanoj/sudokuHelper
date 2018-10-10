@@ -1,5 +1,7 @@
 package input;
 
+import base.Parser;
+
 public class ParserFactory {
 	
 	public static Parser getParser(ParserType parserType) {

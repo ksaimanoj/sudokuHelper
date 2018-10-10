@@ -1,10 +1,11 @@
-package input.test;
+package input;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.*;
 
 import base.Board;
+import base.Parser;
 import input.*;
 
 public class TextParserTest {

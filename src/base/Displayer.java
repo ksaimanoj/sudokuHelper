@@ -1,6 +1,4 @@
-package output;
-
-import base.Board;
+package base;
 
 public interface Displayer {
 	
